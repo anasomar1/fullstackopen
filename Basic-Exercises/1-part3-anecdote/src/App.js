@@ -21,7 +21,6 @@ const App = () => {
       setSelected(selected + 1);
     }
   };
-
   const voteForAnecdote = () => {
     const copy = [...votes];
     copy[selected] += 1;
@@ -31,7 +30,6 @@ const App = () => {
   return (
     <div>
       <h2>Anecdote of the day</h2>
-
       {anecdotes[selected]}
       <div style={{ marginTop: "1rem" }}>
         <button onClick={voteForAnecdote}>vote</button>
