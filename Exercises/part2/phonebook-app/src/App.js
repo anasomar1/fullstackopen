@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Persons from "./components/Persons";
 import Filter from "./components/Filter";
+import axios from "axios";
 
 const App = () => {
-  const [persons, setPersons] = useState([
-    { name: "Arto Hellas", number: "07901010100" },
-  ]);
+  const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [number, setNumber] = useState("");
   const [filteredPersons, setFilteredPersons] = useState(persons);
@@ -25,8 +24,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    setFilteredPersons(persons);
-  }, [persons]);
+    axios.get("http://localhost:3001/persons").then((response) => {
+      setPersons(response.data);
+      setFilteredPersons(response.data);
+    });
+  }, []);
 
   const handleInputNameChange = (event) => {
     setNewName(event.target.value);
